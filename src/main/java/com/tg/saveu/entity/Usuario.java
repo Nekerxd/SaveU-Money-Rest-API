@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.Objects;
 
 @Getter @Setter @NoArgsConstructor
@@ -30,6 +31,9 @@ public class Usuario implements Serializable {
 
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
+
+    @OneToMany(mappedBy = "usuario")
+    private Collection<Meta> metas;
 
     public enum Role {
         ROLE_ADMIN, ROLE_CLIENTE

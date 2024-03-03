@@ -1,5 +1,6 @@
 package com.tg.saveu.web.dto.metadto;
 
+import com.tg.saveu.entity.Usuario;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -7,5 +8,5 @@ import lombok.*;
 public class MetaUsuarioDto {
 
     @NotNull
-    private Long idUsuario;
+    private Usuario usuario;
 }

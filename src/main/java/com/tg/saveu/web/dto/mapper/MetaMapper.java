@@ -6,7 +6,7 @@ import com.tg.saveu.web.dto.metadto.MetaResponseDto;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.stream.Collectors;
 
 public class MetaMapper {
@@ -28,8 +28,7 @@ public class MetaMapper {
         return mapper.map(meta, MetaResponseDto.class);
     }
 
-
-    public static List<MetaResponseDto> toListDto(List<Meta> metas) {
+    public static Collection<MetaResponseDto> toCollectionDto(Collection<Meta> metas) {
         return metas.stream().map(user -> toDto(user)).collect(Collectors.toList());
     }
 }

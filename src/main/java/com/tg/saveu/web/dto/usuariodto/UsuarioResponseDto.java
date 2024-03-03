@@ -1,6 +1,9 @@
 package com.tg.saveu.web.dto.usuariodto;
 
+import com.tg.saveu.web.dto.metadto.MetaResponseDto;
 import lombok.*;
+
+import java.util.Collection;
 
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @ToString
 public class UsuarioResponseDto {
@@ -9,4 +12,5 @@ public class UsuarioResponseDto {
     private String email;
     private String name;
     private String role;
+    private Collection<MetaResponseDto> metas;
 }
