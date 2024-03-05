@@ -33,35 +33,17 @@ public class MetaService {
     }
 
     @Transactional
-    public Meta editarDescricao(Long id, Long idUsuario, String novaDescricao) {
+    public Meta editarMeta(Long id, Long idUsuario, String descricao, Float objetivo, LocalDate prazo, Meta.Role role) {
         if (verificarUsuario(id, idUsuario)) {
-            throw new RuntimeException("Falha ao alterar descrição.");
+            throw new RuntimeException("Falha ao alterar meta.");
         }
+
         Meta meta = buscarPorId(id);
+        meta.setDescription(descricao);
+        meta.setGoal(objetivo);
+        meta.setDueDate(prazo);
+        meta.setRole(role);
 
-        meta.setDescription(novaDescricao);
-        return meta;
-    }
-
-    @Transactional
-    public Meta editarObjetivo(Long id, Long idUsuario, Float novoObjetivo) {
-        if (verificarUsuario(id, idUsuario)) {
-            throw new RuntimeException("Falha ao alterar objetivo.");
-        }
-        Meta meta = buscarPorId(id);
-
-        meta.setGoal(novoObjetivo);
-        return meta;
-    }
-
-    @Transactional
-    public Meta editarPrazo(Long id, Long idUsuario, LocalDate novoPrazo) {
-        if (verificarUsuario(id, idUsuario)) {
-            throw new RuntimeException("Falha ao alterar prazo.");
-        }
-        Meta meta = buscarPorId(id);
-
-        meta.setDueDate(novoPrazo);
         return meta;
     }
 

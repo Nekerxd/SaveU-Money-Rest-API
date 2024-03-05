@@ -30,20 +30,8 @@ public class MetaController {
     }
 
     @PatchMapping("/descricao/{id}")
-    public ResponseEntity<Void> updateDescription(@PathVariable Long id, @Valid @RequestBody MetaDescricaoDto dto) {
-        metaService.editarDescricao(id, dto.getUsuario().getId(), dto.getNovaDescricao());
-        return ResponseEntity.noContent().build();
-    }
-
-    @PatchMapping("/objetivo/{id}")
-    public ResponseEntity<Void> updateGoal(@PathVariable Long id, @Valid @RequestBody MetaObjetivoDto dto) {
-        metaService.editarObjetivo(id, dto.getUsuario().getId(), dto.getNovoObjetivo());
-        return ResponseEntity.noContent().build();
-    }
-
-    @PatchMapping("/prazo/{id}")
-    public ResponseEntity<Void> updateDueDate(@PathVariable Long id, @Valid @RequestBody MetaPrazoDto dto) {
-        metaService.editarPrazo(id, dto.getUsuario().getId(), dto.getNovoPrazo());
+    public ResponseEntity<Void> updateMeta(@PathVariable Long id, @Valid @RequestBody MetaUpdateDto dto) {
+        metaService.editarMeta(id, dto.getUsuario().getId(), dto.getNovaDescricao(), dto.getNovoObjetivo(), dto.getNovoPrazo(),  dto.getRole());
         return ResponseEntity.noContent().build();
     }
 
