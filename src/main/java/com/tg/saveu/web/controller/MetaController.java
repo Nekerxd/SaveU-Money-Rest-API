@@ -29,7 +29,7 @@ public class MetaController {
         return ResponseEntity.ok(MetaMapper.toDto(meta));
     }
 
-    @PatchMapping("/descricao/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<Void> updateMeta(@PathVariable Long id, @Valid @RequestBody MetaUpdateDto dto) {
         metaService.editarMeta(id, dto.getUsuario().getId(), dto.getNovaDescricao(), dto.getNovoObjetivo(), dto.getNovoPrazo(),  dto.getRole());
         return ResponseEntity.noContent().build();
