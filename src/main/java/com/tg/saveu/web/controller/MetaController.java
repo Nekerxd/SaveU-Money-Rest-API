@@ -35,7 +35,7 @@ public class MetaController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteMeta(@PathVariable Long id, @Valid @RequestBody MetaUsuarioDto dto) {
         metaService.deletarMeta(id, dto.getUsuario().getId());
         return  ResponseEntity.noContent().build();
