@@ -1,7 +1,7 @@
 package com.tg.saveu.web.dto.mapper;
 
 import com.tg.saveu.entity.Meta;
-import com.tg.saveu.web.dto.metadto.MetaCreateDto;
+import com.tg.saveu.web.dto.metadto.MetaDto;
 import com.tg.saveu.web.dto.metadto.MetaResponseDto;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class MetaMapper {
 
-    public static Meta toMeta(MetaCreateDto createDto) {
+    public static Meta toMeta(MetaDto createDto) {
         return new ModelMapper().map(createDto, Meta.class);
     }
 

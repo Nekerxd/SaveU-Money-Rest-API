@@ -18,7 +18,7 @@ public class MetaController {
     private final MetaService metaService;
 
     @PostMapping
-    public ResponseEntity<MetaResponseDto> create(@Valid @RequestBody MetaCreateDto createDto) {
+    public ResponseEntity<MetaResponseDto> create(@Valid @RequestBody MetaDto createDto) {
         Meta meta = metaService.salvar(MetaMapper.toMeta(createDto));
         return ResponseEntity.status(HttpStatus.CREATED).body(MetaMapper.toDto(meta));
     }
@@ -30,14 +30,14 @@ public class MetaController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Void> updateMeta(@PathVariable Long id, @Valid @RequestBody MetaUpdateDto dto) {
-        metaService.editarMeta(id, dto.getUsuario().getId(), dto.getNovaDescricao(), dto.getNovoObjetivo(), dto.getNovoPrazo(),  dto.getRole());
+    public ResponseEntity<Void> updateMeta(@PathVariable Long id, @Valid @RequestBody MetaDto dto) {
+        metaService.editarMeta(id, dto.getUsuario().getId(), dto.getDescription(), dto.getGoal(), dto.getDueDate(),  dto.getRole());
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMeta(@PathVariable Long id, @Valid @RequestBody MetaUsuarioDto dto) {
-        metaService.deletarMeta(id, dto.getUsuario().getId());
+    public ResponseEntity<Void> deleteMeta(@PathVariable Long id, @Valid @RequestBody Long idUsuario) {
+        metaService.deletarMeta(id, idUsuario);
         return  ResponseEntity.noContent().build();
     }
 }
