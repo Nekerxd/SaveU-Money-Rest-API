@@ -3,7 +3,6 @@ package com.tg.saveu.service;
 import com.tg.saveu.entity.Conta;
 import com.tg.saveu.exception.EntityNotFoundException;
 import com.tg.saveu.repository.ContaRepository;
-import com.tg.saveu.repository.MetaRepository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

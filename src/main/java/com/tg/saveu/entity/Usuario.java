@@ -1,5 +1,6 @@
 package com.tg.saveu.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,8 +33,13 @@ public class Usuario implements Serializable {
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private Collection<Meta> metas;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario")
+    private Collection<Conta> contas;
 
     public enum Role {
         ROLE_ADMIN, ROLE_CLIENTE
