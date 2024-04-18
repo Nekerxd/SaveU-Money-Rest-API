@@ -1,9 +1,11 @@
 package com.tg.saveu.web.controller;
 
 import com.tg.saveu.entity.Meta;
+import com.tg.saveu.entity.Usuario;
 import com.tg.saveu.service.MetaService;
 import com.tg.saveu.web.dto.mapper.MetaMapper;
 import com.tg.saveu.web.dto.metadto.*;
+import com.tg.saveu.web.dto.usuariodto.UsuarioResponseDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -35,9 +37,19 @@ public class MetaController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMeta(@PathVariable Long id, @Valid @RequestBody Long idUsuario) {
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> deleteMeta(@PathVariable Long id, @Valid  @RequestBody UsuarioResponseDto usuario) {
+//        metaService.deletarMeta(id, usuario.getId());
+//        return  ResponseEntity.noContent().build();
+//    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deleteMeta(@RequestParam(name = "id", required = true) Long id,
+                                           @RequestParam(name = "idUsuario", required = true) Long idUsuario) {
         metaService.deletarMeta(id, idUsuario);
         return  ResponseEntity.noContent().build();
     }
+
+
+
 }

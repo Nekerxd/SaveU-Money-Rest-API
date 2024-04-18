@@ -29,4 +29,17 @@ public class ContaController {
         return ResponseEntity.ok(conta);
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> updateConta(@PathVariable Long id, @Valid @RequestBody ContaDto dto) {
+        contaService.editarConta(id, dto.getUsuario().getId(), dto.getName(), dto.getBalance(), dto.getCeiling(), dto.getType(), dto.getBanco().getId());
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deleteConta(@RequestParam(name = "id", required = true) Long id,
+                                           @RequestParam(name = "idUsuario", required = true) Long idUsuario) {
+        contaService.deletarConta(id, idUsuario);
+        return  ResponseEntity.noContent().build();
+    }
+
 }
