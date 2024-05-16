@@ -1,11 +1,9 @@
 package com.tg.saveu.web.controller;
 
 import com.tg.saveu.entity.Meta;
-import com.tg.saveu.entity.Usuario;
 import com.tg.saveu.service.MetaService;
 import com.tg.saveu.web.dto.mapper.MetaMapper;
 import com.tg.saveu.web.dto.metadto.*;
-import com.tg.saveu.web.dto.usuariodto.UsuarioResponseDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

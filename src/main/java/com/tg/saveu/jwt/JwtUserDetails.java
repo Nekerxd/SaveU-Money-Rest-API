@@ -1,11 +1,9 @@
 package com.tg.saveu.jwt;
 
 import com.tg.saveu.entity.Usuario;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 
-import java.util.Collection;
 
 public class JwtUserDetails extends User {
 
