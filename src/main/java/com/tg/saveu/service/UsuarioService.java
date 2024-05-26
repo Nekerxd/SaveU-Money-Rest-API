@@ -93,4 +93,9 @@ public class UsuarioService {
     public Usuario.Role buscarRolePorEmail(String email) {
         return usuarioRepository.findRoleByEmail(email);
     }
+
+    @Transactional(readOnly = true)
+    public Long buscarIdPorEmail(String email) {
+        return usuarioRepository.findIdByEmail(email);
+    }
 }

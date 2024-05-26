@@ -36,7 +36,7 @@ public class JwtUtils {
         return Date.from(end.atZone(ZoneId.systemDefault()).toInstant());
     }
 
-    public static JwtToken createToken(String email, String role) {
+    public static JwtToken createToken(String email, String role, Long id) {
         Date issuedAt = new Date();
         Date limit = toExpireDate(issuedAt);
 
@@ -47,6 +47,7 @@ public class JwtUtils {
                 .setExpiration(limit)
                 .signWith(generateKey(), SignatureAlgorithm.HS256)
                 .claim("role", role)
+                .claim("id", id)
                 .compact();
 
         return new JwtToken(token);
@@ -65,6 +66,14 @@ public class JwtUtils {
 
     public static String getEmailFromToken(String token) {
         return getClaimsFromToken(token).getSubject();
+    }
+
+    public static Long getUserIdFromToken(String token) {
+        Claims claims = getClaimsFromToken(token);
+        if (claims != null) {
+            return claims.get("userId", Long.class);
+        }
+        return null;
     }
 
     public static boolean isTokenValid(String token) {
