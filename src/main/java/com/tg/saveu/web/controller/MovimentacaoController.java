@@ -1,9 +1,14 @@
 package com.tg.saveu.web.controller;
 
 import com.tg.saveu.entity.Movimentacao;
+import com.tg.saveu.entity.Usuario;
 import com.tg.saveu.service.MovimentacaoService;
 import com.tg.saveu.web.dto.contaDto.ContaDto;
+import com.tg.saveu.web.dto.mapper.MovimentacaoMapper;
+import com.tg.saveu.web.dto.mapper.UsuarioMapper;
 import com.tg.saveu.web.dto.movimentacaoDto.MovimentacaoDto;
+import com.tg.saveu.web.dto.movimentacaoDto.MovimentacaoResponseDto;
+import com.tg.saveu.web.dto.usuariodto.UsuarioResponseDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

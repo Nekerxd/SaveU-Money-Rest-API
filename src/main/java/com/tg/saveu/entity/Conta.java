@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Objects;
 
 @Getter
@@ -39,6 +40,9 @@ public class Conta implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
+
+    @OneToMany(mappedBy = "conta")
+    private Collection<Movimentacao> movimentacoes;
 
 
     public enum Type {

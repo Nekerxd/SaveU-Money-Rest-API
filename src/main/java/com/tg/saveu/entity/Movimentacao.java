@@ -1,5 +1,7 @@
 package com.tg.saveu.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonValue;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,6 +31,7 @@ public class Movimentacao implements Serializable {
     @Column(name = "value")
     private Float value;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "conta_id", nullable = false)
     private Conta conta;
@@ -52,26 +55,58 @@ public class Movimentacao implements Serializable {
         TYPE_DESPESA, TYPE_RECEITA
     }
     public enum Status {
-        STATUS_DESPESA_PAGO, STATUS_DESPESA_APAGAR, STATUS_DESPESA_ATRASADO,
-        STATUS_RECEITA_RECEBIDO, STATUS_RECEITA_ARECEBER, STATUS_RECEITA_ATRASADO
+        STATUS_DESPESA_PAGO, STATUS_DESPESA_APAGAR, STATUS_ATRASADO,
+        STATUS_RECEITA_RECEBIDO, STATUS_RECEITA_ARECEBER,
     }
 
     public enum Categoria {
         // Categorias de Despesas
-        CATEGORY_DESPESA_ALIMENTACAO, CATEGORY_DESPESA_LAZER, CATEGORY_DESPESA_MORADIA,
-        CATEGORY_DESPESA_TRANSPORTE, CATEGORY_DESPESA_SAUDE, CATEGORY_DESPESA_EDUCACAO,
-        CATEGORY_DESPESA_VESTUARIO, CATEGORY_DESPESA_SERVICOS, CATEGORY_DESPESA_IMPREVISTOS,
-        CATEGORY_DESPESA_SEGUROS, CATEGORY_DESPESA_TAXAS, CATEGORY_DESPESA_EMPRESTIMOS,
-        CATEGORY_DESPESA_DIVERSOS, CATEGORY_DESPESA_VIAGEM, CATEGORY_DESPESA_INVESTIMENTOS,
-        CATEGORY_DESPESA_DOACOES, CATEGORY_DESPESA_UTILIDADES, CATEGORY_DESPESA_ASSINATURAS,
-        CATEGORY_DESPESA_HIGIENE, CATEGORY_DESPESA_PETS, CATEGORY_DESPESA_FERRAMENTAS,
-        CATEGORY_DESPESA_OUTRAS_DESPESAS,
+        CATEGORY_DESPESA_ALIMENTACAO("Alimentação"),
+        CATEGORY_DESPESA_LAZER("Lazer"),
+        CATEGORY_DESPESA_MORADIA("Moradia"),
+        CATEGORY_DESPESA_TRANSPORTE("Transporte"),
+        CATEGORY_DESPESA_SAUDE("Saúde"),
+        CATEGORY_DESPESA_EDUCACAO("Educação"),
+        CATEGORY_DESPESA_VESTUARIO("Vestuário"),
+        CATEGORY_DESPESA_SERVICOS("Serviços"),
+        CATEGORY_DESPESA_IMPREVISTOS("Imprevistos"),
+        CATEGORY_DESPESA_SEGUROS("Seguros"),
+        CATEGORY_DESPESA_TAXAS("Taxas"),
+        CATEGORY_DESPESA_EMPRESTIMOS("Empréstimos"),
+        CATEGORY_DESPESA_DIVERSOS("Diversos"),
+        CATEGORY_DESPESA_VIAGEM("Viagem"),
+        CATEGORY_DESPESA_INVESTIMENTOS("Investimentos"),
+        CATEGORY_DESPESA_DOACOES("Doações"),
+        CATEGORY_DESPESA_UTILIDADES("Utilidades"),
+        CATEGORY_DESPESA_ASSINATURAS("Assinaturas"),
+        CATEGORY_DESPESA_HIGIENE("Higiene"),
+        CATEGORY_DESPESA_PETS("Pets"),
+        CATEGORY_DESPESA_FERRAMENTAS("Ferramentas"),
+        CATEGORY_DESPESA_OUTRAS_DESPESAS("Outras Despesas"),
 
         // Categorias de Receitas
-        CATEGORY_RECEITA_SALARIO, CATEGORY_RECEITA_FREELANCER, CATEGORY_RECEITA_INVESTIMENTOS,
-        CATEGORY_RECEITA_ALUGUEL, CATEGORY_RECEITA_PREMIOS, CATEGORY_RECEITA_PRESENTES,
-        CATEGORY_RECEITA_PENSOES, CATEGORY_RECEITA_DIVIDENDOS, CATEGORY_RECEITA_JURUS,
-        CATEGORY_RECEITA_VENDA, CATEGORY_RECEITA_REEMBOLSO, CATEGORY_RECEITA_OUTRAS_RECEITAS
+        CATEGORY_RECEITA_SALARIO("Salário"),
+        CATEGORY_RECEITA_FREELANCER("Freelancer"),
+        CATEGORY_RECEITA_INVESTIMENTOS("Investimentos"),
+        CATEGORY_RECEITA_ALUGUEL("Aluguel"),
+        CATEGORY_RECEITA_PREMIOS("Prêmios"),
+        CATEGORY_RECEITA_PRESENTES("Presentes"),
+        CATEGORY_RECEITA_PENSOES("Pensões"),
+        CATEGORY_RECEITA_DIVIDENDOS("Dividendos"),
+        CATEGORY_RECEITA_JURUS("Juros"),
+        CATEGORY_RECEITA_VENDA("Venda"),
+        CATEGORY_RECEITA_REEMBOLSO("Reembolso"),
+        CATEGORY_RECEITA_OUTRAS_RECEITAS("Outras Receitas");
+
+        private final String label;
+        private Categoria(String label) {
+            this.label = label;
+        }
+
+        @JsonValue
+        public String getLabel() {
+            return label;
+        }
     }
 
     @Override
