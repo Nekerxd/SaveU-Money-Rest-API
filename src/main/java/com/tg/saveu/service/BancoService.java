@@ -22,7 +22,7 @@ public class BancoService {
 //    @Value("${api.url}")
     private final String apiUrl = "https://brasilapi.com.br/api/banks/v1";
 
-    public List<Banco> obterBancos() {
+    public List<Banco> atualizarBancos() {
         RestTemplate restTemplate = new RestTemplate();
 
         ResponseEntity<Banco[]> response = restTemplate.getForEntity(apiUrl, Banco[].class);
@@ -38,6 +38,10 @@ public class BancoService {
             }
         }
 
+        return bancoRepository.findAll();
+    }
+
+    public List<Banco> obterBancos() {
         return bancoRepository.findAll();
     }
 
