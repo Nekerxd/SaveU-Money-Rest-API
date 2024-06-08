@@ -31,7 +31,7 @@ public class ContaController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<Void> updateConta(@PathVariable Long id, @Valid @RequestBody ContaDto dto) {
-        contaService.editarConta(id, dto.getUsuario().getId(), dto.getName(), dto.getBalance(), dto.getCeiling(), dto.getType(), dto.getBanco().getId());
+        contaService.editarConta(id, dto.getUsuario().getId(), dto.getName(), dto.getBalance(), dto.getType(), dto.getBanco().getId());
         return ResponseEntity.noContent().build();
     }
 

@@ -35,7 +35,7 @@ public class ContaService {
     }
 
     @Transactional
-    public Conta editarConta(Long id, Long idUsuario, String name, Float balance, Float ceiling, String type, Long idBanco) {
+    public Conta editarConta(Long id, Long idUsuario, String name, Float balance, String type, Long idBanco) {
         if (verificarUsuario(id, idUsuario)) {
             throw new RuntimeException("Falha ao alterar conta.");
         }
@@ -43,7 +43,6 @@ public class ContaService {
         Conta conta = buscarPorId(id);
         conta.setName(name);
         conta.setBalance(balance);
-        conta.setCeiling(ceiling);
         conta.setType(Conta.Type.valueOf(type));
         conta.setBanco(bancoService.buscarPorId(idBanco));
 

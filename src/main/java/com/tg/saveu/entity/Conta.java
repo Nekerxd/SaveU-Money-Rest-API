@@ -1,6 +1,7 @@
 package com.tg.saveu.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonValue;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,8 +27,6 @@ public class Conta implements Serializable {
     private String name;
     @Column(name = "balance", nullable = false)
     private Float balance;
-    @Column(name = "ceiling", nullable = false)
-    private Float ceiling;
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false, length = 25)
     private Type type;
@@ -46,7 +45,20 @@ public class Conta implements Serializable {
 
 
     public enum Type {
-        TYPE_CORRENTE, TYPE_CREDITO, TYPE_APLICACAO, TYPE_REFEICAO
+        TYPE_CORRENTE("Corrente"),
+        TYPE_CREDITO("Crédito"),
+        TYPE_APLICACAO("Aplicação"),
+        TYPE_REFEICAO("Refeição");
+
+        private final String label;
+        private Type(String label) {
+            this.label = label;
+        }
+
+        @JsonValue
+        public String getLabel() {
+            return label;
+        }
     }
 
     @Override

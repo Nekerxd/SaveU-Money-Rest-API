@@ -19,8 +19,6 @@ public class ContaDto {
     private String name;
     @NotNull
     private Float balance;
-    @NotNull
-    private Float ceiling;
     @NotBlank
     private String type;
     @NotNull
