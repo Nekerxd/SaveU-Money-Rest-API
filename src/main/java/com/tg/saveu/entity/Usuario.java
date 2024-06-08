@@ -1,6 +1,8 @@
 package com.tg.saveu.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Objects;
 
-@Getter @Setter @NoArgsConstructor
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
 @Entity
 @Table(name = "usuarios")
 public class Usuario implements Serializable {
@@ -32,8 +34,13 @@ public class Usuario implements Serializable {
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private Collection<Meta> metas;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario")
+    private Collection<Conta> contas;
 
     public enum Role {
         ROLE_ADMIN, ROLE_CLIENTE

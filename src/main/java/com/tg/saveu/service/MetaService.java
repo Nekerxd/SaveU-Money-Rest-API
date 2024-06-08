@@ -33,7 +33,7 @@ public class MetaService {
     }
 
     @Transactional
-    public Meta editarMeta(Long id, Long idUsuario, String descricao, Float objetivo, LocalDate prazo, Meta.Role role) {
+    public Meta editarMeta(Long id, Long idUsuario, String descricao, Float objetivo, LocalDate prazo, String role) {
         if (verificarUsuario(id, idUsuario)) {
             throw new RuntimeException("Falha ao alterar meta.");
         }
@@ -42,7 +42,7 @@ public class MetaService {
         meta.setDescription(descricao);
         meta.setGoal(objetivo);
         meta.setDueDate(prazo);
-        meta.setRole(role);
+        meta.setRole(Meta.Role.valueOf(role));
 
         return meta;
     }
