@@ -34,7 +34,6 @@ public class Usuario implements Serializable {
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private Collection<Meta> metas;
 

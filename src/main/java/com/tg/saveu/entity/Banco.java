@@ -22,6 +22,8 @@ public class Banco implements Serializable {
     private Long id;
     @Column(name = "name")
     private String name;
+    @Column(name = "fullName")
+    private String fullName;
     @JsonIgnore
     @OneToMany(mappedBy = "banco")
     private Collection<Conta> contas;

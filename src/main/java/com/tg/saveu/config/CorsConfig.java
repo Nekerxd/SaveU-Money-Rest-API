@@ -13,8 +13,8 @@ public class CorsConfig implements WebMvcConfigurer {
                 .allowedOrigins(
                     "http://localhost:5173",
                     "http://localhost:8080",
-                    "http://192.168.103.89:8080",
-                    "http://192.168.103.89:5173"
+                    "http://192.168.18.3:8080",
+                    "http://192.168.18.3:5173"
                 )
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH")
                 .allowedHeaders("*")
