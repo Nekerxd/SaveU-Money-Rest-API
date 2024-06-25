@@ -30,6 +30,12 @@ public class BancoService {
 
         List<Banco> bancos = Arrays.stream(bancosArray)
                 .filter(banco -> banco.getName() != null)
+                .map(banco -> {
+                    Banco b = new Banco();
+                    b.setName(banco.getName());
+                    b.setFullName(banco.getFullName());
+                    return b;
+                })
                 .collect(Collectors.toList());
 
         for (Banco banco : bancos) {
@@ -40,6 +46,7 @@ public class BancoService {
 
         return bancoRepository.findAll();
     }
+
 
     public List<Banco> obterBancos() {
         return bancoRepository.findAll();

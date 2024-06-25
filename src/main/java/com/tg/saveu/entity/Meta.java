@@ -1,13 +1,13 @@
 package com.tg.saveu.entity;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
 
 @Getter
@@ -24,24 +24,39 @@ public class Meta implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
-
-    @Column(name = "description", nullable = false, length = 150)
+    @Column(name = "title", nullable = false, length = 50)
+    private String title;
+    @Column(name = "description", nullable = false, length = 200)
     private String description;
-    @Column(name = "due_date")
-    private LocalDate dueDate;
+    @Column(name = "startDate")
+    private Date startDate;
+    @Column(name = "endDate")
+    private Date endDate;
     @Column(name = "goal", nullable = false, length = 15)
     private Float goal;
-    @Column(name = "progress")
-    private Float progress = 0.0F;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "category")
+    private CategoryEnum category;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false, length = 25)
     private Role role;
 
-    @Column(name = "data_criacao")
-    private LocalDateTime dataCriacao;
 
     public enum Role {
-        ROLE_DESPESA, ROLE_RECEITA
+        ROLE_DESPESA("Despesa"),
+        ROLE_RECEITA("Receita");
+
+        private String label;
+        private Role(String label) {
+            this.label = label;
+        }
+
+        @JsonValue
+        public String getLabel() {
+            return label;
+        }
     }
 
     @Override
@@ -61,6 +76,13 @@ public class Meta implements Serializable {
     public String toString() {
         return "Meta{" +
                 "id=" + id +
+                ", usuario=" + usuario +
+                ", description='" + description + '\'' +
+                ", title=" + title +
+                ", startDate=" + startDate +
+                ", endDate='" + endDate + '\'' +
+                ", goal='" + goal + '\'' +
+                ", role=" + role +
                 '}';
     }
 }
